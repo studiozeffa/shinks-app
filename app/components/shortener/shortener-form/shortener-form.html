@@ -1,1 +1,39 @@
-<p>I am shortener form!</p>
+<div ng-if="!$ctrl.shortenedUrl">
+  <form class="box shortener-form" name="urlForm" ng-submit="$ctrl.onFormSubmit()">
+    <div class="columns is-small-gutter">
+      <p class="column">
+        <input
+         type="text"
+         class="input"
+         placeholder="Enter URL to shorten"
+         ng-model="$ctrl.model.url"
+         ng-disabled="$ctrl.isShorteningUrl"
+         required>
+      </p>
+      <p class="column is-narrow">
+        <button
+         type="submit"
+         class="button is-info"
+         ng-class="{
+          'is-loading': $ctrl.isShorteningUrl
+         }"
+         ng-disabled="urlForm.$invalid || $ctrl.isShorteningUrl">Shorten</button>
+      </p>
+    </div>
+    <p class="content is-danger" ng-if="$ctrl.hasError">There was a problem, please try again.</p>
+  </form>
+</div>
+<div ng-if="$ctrl.shortenedUrl">
+  <article id="shortenerResults" class="box shortener-results">
+    <p class="content">
+      Your shortened URL is: <a ng-href="{{$ctrl.shortenedUrl}}">{{$ctrl.shortenedUrl}}</a>
+    </p>
+    <p class="content">
+      To preview the destination, use: <a ng-href="{{$ctrl.shortenedUrl}}?preview">{{$ctrl.shortenedUrl}}?preview</a>
+    </p>
+    <p class="content">
+      Destination: <a ng-href="{{$ctrl.destinationUrl}}">{{$ctrl.destinationUrl}}</a>
+    </p>
+    <button class="button is-info" ng-click="$ctrl.showForm()">Shorten Another</button>
+  </article>
+</div>

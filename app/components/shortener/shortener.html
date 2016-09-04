@@ -1,1 +1,11 @@
-<shortener-form></shortener-form>
+<section class="section">
+  <div class="container">
+    <shortener-form
+     shortened-url="$ctrl.currentShink"
+     destination-url="$ctrl.currentShinkDestination"
+     is-shortening-url="$ctrl.isShorteningUrl"
+     shortening-url-error="$ctrl.shorteningUrlError"
+     shorten="$ctrl.shortenUrl(url)"
+     reset="$ctrl.clearCurrentShink()"></shortener-form>
+  </div>
+</section>
