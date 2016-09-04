@@ -6,10 +6,12 @@ require('./app.scss');
 
 const AppComponent = require('./app.component');
 const Common = require('./common');
+const Components = require('./components');
 
 const app = angular
   .module('shinks', [
-    Common
+    Common,
+    Components
   ])
   .component('app', AppComponent);
 
