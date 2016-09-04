@@ -1,0 +1,19 @@
+<h2 class="title is-5">Recent Links</h2>
+<div class="loader app-loader" ng-if="$ctrl.isFetching"></div>
+<p ng-if="!$ctrl.links.length && !$ctrl.isFetching">No recent links.</p>
+<table class="table shortener-recent-links-table" ng-if="$ctrl.links.length && !$ctrl.isFetching">
+  <thead>
+    <tr>
+      <th class="destination-url">Destination</th>
+      <th class="created">Created</th>
+      <th class="short-url">Shortened</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="link in $ctrl.links">
+      <td class="destination-url"><a ng-href="{{link.url}}">{{link.url}}</a></td>
+      <td class="created" am-time-ago="link.created_at"></td>
+      <td class="short-url"><a ng-href="{{link.short_url}}">{{link.short_url}}</a></td>
+    </tr>
+  </tbody>
+</table>

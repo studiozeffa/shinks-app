@@ -1,0 +1,28 @@
+@import "~bulma/sass/utilities/variables";
+
+.shortener-recent-links-table {
+  td {
+    color: darken($grey-dark, 15%);
+  }
+  .destination-url {
+    width: 60%;
+    max-width: 25vw;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .created {
+    width: 250px;
+    display: none;
+    @media screen and (min-width: 850px) {
+      display: table-cell;
+    }
+  }
+  .short-url {
+    width: 20%;
+    display: none;
+    @media screen and (min-width: 600px) {
+      display: table-cell;
+    }
+  }
+}

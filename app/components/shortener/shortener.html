@@ -7,5 +7,11 @@
      shortening-url-error="$ctrl.shorteningUrlError"
      shorten="$ctrl.shortenUrl(url)"
      reset="$ctrl.clearCurrentShink()"></shortener-form>
+    <hr>
+    <shortener-recent-links
+     fetch-links="$ctrl.fetchRecentLinks()"
+     links="$ctrl.recentShinks"
+     is-fetching="$ctrl.isFetchingRecentLinks"
+     fetching-error="$ctrl.fetchingRecentLinksError"></shortener-recent-links>
   </div>
 </section>

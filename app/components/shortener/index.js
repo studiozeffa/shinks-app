@@ -4,6 +4,7 @@ const angular = require('angular');
 const uiRouter = require('angular-ui-router');
 
 const ShortenerForm = require('./shortener-form');
+const ShortenerRecentLinks = require('./shortener-recent-links');
 
 const ShortenerConfig = require('./shortener.config');
 
@@ -19,6 +20,7 @@ const app = angular
   .module('shinks.components.shortener', [
     config.name,
     ShortenerForm,
+    ShortenerRecentLinks,
     uiRouter.default  // https://github.com/angular-ui/ui-router/issues/2506
   ])
   .component('shortener', ShortenerComponent)

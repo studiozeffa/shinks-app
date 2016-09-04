@@ -13,6 +13,12 @@ class ShortenerService {
     });
   }
 
+  fetchRecentLinks() {
+    return this._request({
+      method: 'GET'
+    });
+  }
+
   /** private methods **/
 
   _request(options) {
