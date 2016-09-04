@@ -9,6 +9,11 @@ class RedirecterController {
 
   $onInit() {
     this.linkId = this.$stateParams.id;
+    this.isPreview =
+      this.$stateParams.preview &&
+      this.$stateParams.preview !== '0' &&
+      this.$stateParams.preview !== 'false';
+
     this.service
       .fetchUrl(this.linkId)
       .then(resp => {
@@ -17,7 +22,9 @@ class RedirecterController {
         }
 
         this.url = resp.url;
-        this.$window.location.replace(resp.url);
+        if(!this.isPreview) {
+          this.$window.location.replace(resp.url);
+        }
       });
   }
 }
