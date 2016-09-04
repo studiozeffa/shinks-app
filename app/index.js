@@ -2,11 +2,10 @@
 
 const angular = require('angular');
 
+require('./app.scss');
+
 const AppComponent = require('./app.component');
 const Common = require('./common');
-
-
-require('./app.scss');
 
 const app = angular
   .module('shinks', [

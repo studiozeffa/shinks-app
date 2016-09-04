@@ -1,1 +1,41 @@
+$primary: #42B281;
+$body-background: #FFF;
+
 @import "~bulma/bulma";
+
+.app-loader {
+  margin: 0 auto;
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+.app-loader-preload {
+  margin-top: 150px;
+}
+
+.app-loader-title {
+  margin-top: 20px;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
+.hero-body.is-small {
+  padding: 20px;
+}
+
+.columns.is-small-gutter > .column  {
+  padding: 5px;
+}
+
+p.is-danger {
+  color: $danger;
+}
