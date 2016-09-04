@@ -7,6 +7,13 @@ class ShortenerController {
 
   shortenUrl(url) {
     console.log('You asked to shorten ' + url);
+    this.currentShink = 'shortened_url';
+    this.currentShinkDestination = url;
+  }
+
+  clearCurrentShink() {
+    this.currentShink = null;
+    this.currentShinkDestination = null;
   }
 }
 

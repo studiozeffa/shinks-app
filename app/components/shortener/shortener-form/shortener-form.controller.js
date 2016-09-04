@@ -6,6 +6,11 @@ class ShortenerFormController {
       this.shorten({ url: this.model.url });
     }
   }
+
+  showForm() {
+    this.model.url = null;
+    this.reset();
+  }
 }
 
 module.exports = ShortenerFormController;
