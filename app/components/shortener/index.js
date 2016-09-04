@@ -14,6 +14,10 @@ const app = angular
   ])
   .component('shortener', ShortenerComponent)
   .controller('ShortenerController', ShortenerController)
-  .service('ShortenerService', ShortenerService);
+  .service('ShortenerService', ShortenerService)
+  .config(($provide, $windowProvider) => {
+    const $window = $windowProvider.$get();
+    $provide.value('ShortenerOriginUrl', $window.location.origin);
+  });
 
 module.exports = app.name;

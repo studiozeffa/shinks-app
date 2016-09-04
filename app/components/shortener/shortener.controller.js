@@ -1,8 +1,13 @@
 'use strict';
 
 class ShortenerController {
-  constructor(service) {
+  constructor(service, originUrl) {
     this.service = service;
+    this.originUrl = originUrl;
+  }
+
+  getShortenedUrl(id) {
+    return `${this.originUrl}/${id}`;
   }
 
   shortenUrl(url) {
@@ -12,7 +17,7 @@ class ShortenerController {
 
     this.service.shortenUrl(url)
       .then(resp => {
-        this.currentShink = resp.data.id;
+        this.currentShink = this.getShortenedUrl(resp.data.id);
         this.currentShinkDestination = resp.data.url;
       })
       .catch(err => {
@@ -29,6 +34,6 @@ class ShortenerController {
   }
 }
 
-ShortenerController.$inject = ['ShortenerService'];
+ShortenerController.$inject = ['ShortenerService', 'ShortenerOriginUrl'];
 
 module.exports = ShortenerController;
