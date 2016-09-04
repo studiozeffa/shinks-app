@@ -1,8 +1,9 @@
 'use strict';
 
 class ShortenerController {
-  constructor() {
-    // this.currentShink = 'some_shink';
+  constructor(service) {
+    this.service = service;
+    this.service.sayHello();
   }
 
   shortenUrl(url) {
@@ -16,5 +17,7 @@ class ShortenerController {
     this.currentShinkDestination = null;
   }
 }
+
+ShortenerController.$inject = ['ShortenerService'];
 
 module.exports = ShortenerController;
