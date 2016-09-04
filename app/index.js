@@ -20,7 +20,10 @@ const app = angular
     Components
   ])
   .component('app', AppComponent)
-  .config((ShortenerConfig) => {
+  .config(($urlRouterProvider, $locationProvider, ShortenerConfig) => {
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
+
     Object.assign(ShortenerConfig, config);
   });
 
