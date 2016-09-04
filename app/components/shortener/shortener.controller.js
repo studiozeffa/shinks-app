@@ -17,8 +17,8 @@ class ShortenerController {
 
     this.service.shortenUrl(url)
       .then(resp => {
-        this.currentShink = this.getShortenedUrl(resp.data.id);
-        this.currentShinkDestination = resp.data.url;
+        this.currentShink = this.getShortenedUrl(resp.id);
+        this.currentShinkDestination = resp.url;
       })
       .catch(err => {
         this.shorteningUrlError = err;

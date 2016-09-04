@@ -1,25 +1,30 @@
 'use strict';
 
 class ShortenerService {
-  constructor($timeout, config) {
-    this.$timeout = $timeout;
+  constructor($http, config) {
+    this.$http = $http;
     this.config = config;
-    console.log(config);
   }
+
   shortenUrl(url) {
-    console.log('You asked me to shorten a URL!');
-    return this.$timeout(function() {
-      console.log('And, now Im returning!');
-      return {
-        data: {
-          id: '1234',
-          url: url
-        }
-      };
-    }, 1000);
+    return this._request({
+      method: 'POST',
+      data: { url }
+    });
+  }
+
+  /** private methods **/
+
+  _request(options) {
+    options.url = `${this.config.api_url}/links`;
+    options.headers = {
+      'X-Api-Key': this.config.api_key
+    };
+
+    return this.$http(options).then(resp => resp.data);
   }
 }
 
-ShortenerService.$inject = ['$timeout', 'ShortenerConfig'];
+ShortenerService.$inject = ['$http', 'ShortenerConfig'];
 
 module.exports = ShortenerService;
