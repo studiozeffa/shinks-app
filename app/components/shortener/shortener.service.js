@@ -1,8 +1,10 @@
 'use strict';
 
 class ShortenerService {
-  constructor($timeout) {
+  constructor($timeout, config) {
     this.$timeout = $timeout;
+    this.config = config;
+    console.log(config);
   }
   shortenUrl(url) {
     console.log('You asked me to shorten a URL!');
@@ -18,6 +20,6 @@ class ShortenerService {
   }
 }
 
-ShortenerService.$inject = ['$timeout'];
+ShortenerService.$inject = ['$timeout', 'ShortenerConfig'];
 
 module.exports = ShortenerService;
