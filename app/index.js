@@ -20,11 +20,12 @@ const app = angular
     Components
   ])
   .component('app', AppComponent)
-  .config(($urlRouterProvider, $locationProvider, ShortenerConfig) => {
+  .config(($urlRouterProvider, $locationProvider, ShortenerConfig, RedirecterConfig) => {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
 
     Object.assign(ShortenerConfig, config);
+    Object.assign(RedirecterConfig, config);
   });
 
 module.exports = app.name;
