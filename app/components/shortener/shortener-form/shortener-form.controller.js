@@ -7,6 +7,12 @@ class ShortenerFormController {
     }
   }
 
+  $onChanges(changes) {
+    if(changes.shorteningUrlError) {
+      this.hasError = !!changes.shorteningUrlError.currentValue;
+    }
+  }
+
   showForm() {
     this.model.url = null;
     this.reset();

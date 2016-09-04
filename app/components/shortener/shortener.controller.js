@@ -8,10 +8,15 @@ class ShortenerController {
   shortenUrl(url) {
     console.log('You asked to shorten ' + url);
     this.isShorteningUrl = true;
+    this.shorteningUrlError = null;
+
     this.service.shortenUrl(url)
       .then(resp => {
         this.currentShink = resp.data.id;
         this.currentShinkDestination = resp.data.url;
+      })
+      .catch(err => {
+        this.shorteningUrlError = err;
       })
       .finally(() => {
         this.isShorteningUrl = false;
