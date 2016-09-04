@@ -2,6 +2,7 @@
 
 const ShortenerFormComponent = {
   template: require('./shortener-form.html'),
+  controller: 'ShortenerFormController',
   bindings: {
     shortenedUrl: '<',
     destinationUrl: '<',
