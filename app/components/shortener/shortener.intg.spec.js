@@ -80,4 +80,40 @@ describe('Shortener Integration', function() {
       }]);
     });
   });
+
+  describe('Component', function() {
+    let $compile, $rootScope, $http;
+
+    beforeEach(inject(function($injector) {
+      $compile = $injector.get('$compile');
+      $rootScope = $injector.get('$rootScope');
+      $http = $injector.get('$httpBackend');
+    }));
+
+    it('should show the shortener form elements if the currentShink is not set', function() {
+      $http.whenGET('api_url/links').respond([]);
+
+      const element = $compile('<shortener></shortener>')($rootScope);
+      $rootScope.$digest();
+      expect(element.find('input').length).toBe(1);
+      expect(element.find('button').length).toBe(1);
+      expect(element.find('button').text()).toBe('Shorten');
+      expect(element.find('a').length).toBe(0);
+    });
+
+    it('should show the shortener form elements if the currentShink is set', function() {
+      $http.whenGET('api_url/links').respond([]);
+
+      const element = $compile('<shortener></shortener>')($rootScope);
+      const ctrl = element.controller('shortener');
+      ctrl.currentShink = 'some_url';
+      ctrl.currentShinkDestination = 'some_destination_url';
+      $rootScope.$digest();
+
+      expect(element.find('input').length).toBe(0);
+      expect(element.find('button').length).toBe(1);
+      expect(element.find('button').text()).toBe('Shorten Another');
+      expect(element.find('a').length).toBe(3);
+    });
+  });
 });
