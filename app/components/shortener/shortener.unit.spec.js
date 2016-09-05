@@ -4,6 +4,38 @@ const ShortenerService = require('./shortener.service');
 const Q = require('q');
 
 describe('Shortener', function() {
+  describe('Controller', function() {
+    describe('#constructor', function() {
+      it('should set instance variables');
+    });
+
+    describe('#getShortenedUrl', function() {
+      it('should get a shortened URL from the passed ID');
+    });
+
+    describe('#shortenUrl', function() {
+      it('should shorten the URL and refresh the recent links when completed');
+      it('should return an error if the response does not exist');
+      it('should handle a service error when shortening the URL');
+      it('should not shorten the URL if it is already shortening');
+    });
+
+    describe('#fetchRecentLinks', function() {
+      it('should fetch recent links');
+      it('should return an error if the response does not exist');
+      it('should handle a service error when fetching recent links');
+      it('should should not fetch recent links if it is already fetching');
+    });
+
+    describe('#clearCurrentShink', function() {
+      it('should clear the current shink');
+    });
+
+    describe('$inject', function() {
+      it('should declare the dependencies to inject');
+    });
+  });
+
   describe('Service', function() {
     describe('#constructor', function() {
       it('should set instance variables', function() {
