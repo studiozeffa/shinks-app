@@ -1,18 +1,20 @@
 'use strict';
 
+const ShortenerPage = require('./page-objects/shortener.po.js');
+
 describe('Shortener Page', function() {
-  it('should shorten a link', function() {
+  const shortenerPage = new ShortenerPage();
+
+  beforeEach(function() {
+    // Ensure we load the page before each test
+    // This ensures we have a fresh slate
     browser.get('/');
+  });
 
-    const form = element(by.css('form[name="urlForm"]'));
-    const urlInput = form.element(by.model('$ctrl.model.url'));
+  it('should shorten a link', function() {
+    shortenerPage.submitUrl('http://protractortest.org');
 
-    const results = element(by.css('#shortenerResults'));
-
-    urlInput.clear().sendKeys('http://protractortest.org');
-    form.submit();
-
-    expect(form.isPresent()).toBeFalsy();
-    expect(results.isPresent()).toBeTruthy();
+    expect(shortenerPage.form.isPresent()).toBeFalsy();
+    expect(shortenerPage.results.isPresent()).toBeTruthy();
   });
 });
