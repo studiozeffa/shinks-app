@@ -1,7 +1,16 @@
 'use strict';
 
 describe('Shortener Integration', function() {
-  beforeEach(module('shinks.components.shortener'));
+  beforeEach(module('shinks.components.shortener.config', function($provide) {
+    $provide.constant('ShortenerConfig', {
+      api_key: 'api_key',
+      api_url: 'api_url'
+    });
+  }));
+
+  beforeEach(module('shinks.components.shortener', function($provide) {
+    $provide.value('ShortenerOriginUrl', 'origin_url');
+  }));
 
   describe('Routes', function() {
     let $state, $location, $rootScope;
@@ -20,6 +29,55 @@ describe('Shortener Integration', function() {
     it('should go to the shortener state', function() {
       goTo('/');
       expect($state.current.name).toEqual('shortener');
+    });
+  });
+
+  describe('Controller', function() {
+    let $http, ctrl;
+
+    beforeEach(inject(function($injector) {
+      $http = $injector.get('$httpBackend');
+
+      const $componentController = $injector.get('$componentController');
+      ctrl = $componentController('shortener');
+    }));
+
+    it('should shorten the URL', function() {
+      const expectedData = {
+        url: 'some_url'
+      };
+
+      const expectedHeaders = function(headers) {
+        return headers['X-Api-Key'] === 'api_key';
+      };
+
+      $http
+        .expectPOST('api_url/links', expectedData, expectedHeaders)
+        .respond(200, {
+          id: '1234',
+          url: 'http://some_url'
+        });
+
+      $http
+        .expectGET('api_url/links', expectedHeaders)
+        .respond(200, [{
+          id: 'link1'
+        }, {
+          id: 'link2'
+        }]);
+
+      ctrl.shortenUrl('some_url');
+      $http.flush();
+
+      expect(ctrl.currentShink).toBe('origin_url/1234');
+      expect(ctrl.currentShinkDestination).toBe('http://some_url');
+      expect(ctrl.recentShinks).toEqual([{
+        id: 'link1',
+        short_url: 'origin_url/link1'
+      }, {
+        id: 'link2',
+        short_url: 'origin_url/link2'
+      }]);
     });
   });
 });
