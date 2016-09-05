@@ -10,11 +10,16 @@ class ShortenerPage {
     this.shortenedUrlAnchor = this.resultsAnchors.get(0);
     this.shortenedUrlPreviewAnchor = this.resultsAnchors.get(1);
     this.destinationUrlAnchor = this.resultsAnchors.get(2);
+    this.shortenAnotherButton = this.results.$('button');
   }
 
   submitUrl(url) {
     this.urlInput.clear().sendKeys(url);
     this.form.submit();
+  }
+
+  returnToForm() {
+    this.shortenAnotherButton.click();
   }
 }
 
