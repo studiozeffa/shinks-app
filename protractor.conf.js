@@ -4,7 +4,6 @@
 'use strict';
 
 const SpecReporter = require('jasmine-spec-reporter');
-const HttpMocker = require('./spec/e2e/mocks/http');
 
 exports.config = {
   // A base URL for your application under test. Calls to protractor.get()
@@ -54,11 +53,5 @@ exports.config = {
 
   onPrepare: function() {
     jasmine.getEnv().addReporter(new SpecReporter());
-
-    if(browser.params.mockBackend) {
-      beforeEach(function() {
-        browser.addMockModule('httpMocker', HttpMocker);
-      });
-    }
   }
 };

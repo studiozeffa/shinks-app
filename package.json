@@ -33,7 +33,7 @@
     "webpack-dev-server": "^1.15.0"
   },
   "scripts": {
-    "serve": "webpack-dev-server --inline --history-api-fallback --open --no-info",
+    "serve": "webpack-dev-server --inline --history-api-fallback --open",
     "specs:unit": "node spec/runner.js",
     "specs:unit:watch": "nodemon --exec npm run specs:unit --silent",
     "specs:intg": "karma start --single-run",
